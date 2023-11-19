@@ -1,1 +1,37 @@
-<p>order works!</p>
+<div class="orders-table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Order Date</th>
+        <th>Product</th>
+        <th>Total Price</th>
+        <th>Payment Type</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.OrderDate | date }}</td>
+        <td>
+          <ul>
+            <ng-container *ngFor="let product of order.Products">
+              <li>
+                {{ getProduct(product.ProductId) }}
+                ({{ product.Quantity }} items)
+              </li>
+            </ng-container>
+          </ul>
+        </td>
+        <td>{{ calculateTotalPrice(order) | number }}</td>
+        <td>{{ order.PaymentType }}</td>
+        <td>
+          <button class="details-button" (click)="navigateToOrderDetails(order.OrderId)">
+            Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
