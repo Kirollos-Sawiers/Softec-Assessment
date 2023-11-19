@@ -1,1 +1,20 @@
-<p>product works!</p>
+<div class="products-container">
+  <div class="product-card" *ngFor="let product of products">
+    <img
+      [src]="product.ProductImg"
+      alt="{{ product.ProductName }}"
+      class="product-image"
+    />
+    <div class="product-details">
+      <h3 class="product-name">{{ product.ProductName }}</h3>
+      <p class="product-price">{{ product.ProductPrice | currency }}</p>
+      <p
+        [class]="
+          isLowStock(product.AvailablePieces) ? 'low-stock' : 'available-pieces'
+        "
+      >
+        Available Pieces: {{ product.AvailablePieces }}
+      </p>
+    </div>
+  </div>
+</div>
