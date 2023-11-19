@@ -1,27 +1,33 @@
 # SoftecAssessment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+## Overview
 
-## Development server
+This project aims to create a responsive UI for managing products and orders using three JSON arrays. The application consists of three main pages: Products Page, Orders Page, and Order Details Page.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Pages
 
-## Code scaffolding
+### 1. Products Page
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Description:** This page displays all available products for users. Additionally, it highlights products with very few quantities.
 
-## Build
+- **Implementation Details:**
+  - Display all products with relevant information.
+  - Highlight products with low quantities.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 2. Orders Page
 
-## Running unit tests
+- **Description:** This page provides an overview of all orders in the system. It includes details such as the total price for each order and the payment method used.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Implementation Details:**
+  - List all orders with associated information.
+  - Display the total price for each order.
+  - Show the payment method used for each order.
+    -Add Details button to navigate to order details page.
 
-## Running end-to-end tests
+### 3. Order Details Page
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Description:** This page show details about a specific order, including order details, customer details and product details.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Implementation Details:**
+  - Present order-specific information, including order details and customer details.
+  - Display a list of products included in the order with their respective quantities.
