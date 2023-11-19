@@ -1,0 +1,56 @@
+<!-- 
+<div class="user-card">
+  <div class="user-details">
+    <ng-container *ngFor="let user of userData">
+      <p>Email: {{ user.Email }}</p>
+      <p>Phone: {{ user.Phone }}</p>
+      <p>Address: {{ user.Address }}</p>
+    </ng-container>
+  </div>
+</div>
+
+<ul class="product-list">
+  <li *ngFor="let product of order.Products">
+    <article class="product-card">
+      <h2>{{ getProduct(product.ProductId) }}</h2>
+      <p>{{ product.Quantity }} items</p>
+    </article>
+  </li>
+</ul> -->
+
+<article class="user-card">
+  <div class="user-details">
+    <ng-container *ngFor="let user of userData">
+      <section class="user-info">
+        <p>Email: {{ user.Email }}</p>
+        <p>Phone: {{ user.Phone }}</p>
+        <p>Address: {{ user.Address }}</p>
+      </section>
+    </ng-container>
+  </div>
+</article>
+
+<ul class="product-list">
+  <li *ngFor="let product of order.Products">
+    <ng-container {{ getProduct(product.ProductId) }}>
+      <article class="product-card">
+        <img
+          [src]="productData[0].ProductImg"
+          alt="{{ productData[0].ProductName }}"
+          class="product-image"
+        />
+        <div class="product-details">
+          <h2 class="product-name">{{ productData[0].ProductName }}</h2>
+          <p class="product-price">
+            {{ productData[0].ProductPrice | currency }}
+          </p>
+        </div>
+      </article>
+    </ng-container>
+  </li>
+</ul>
+
+<div class="order-details">
+  <p class="order-date">{{ order.OrderDate | date : "medium" }}</p>
+  <p class="payment-type">Payment Type: {{ order.PaymentType }}</p>
+</div>

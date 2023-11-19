@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Iorder } from 'src/app/core/models/iorder';
 import { Iproduct } from 'src/app/core/models/iproduct';
 import { OrderService } from 'src/app/core/services/order.service';
 import { ProductService } from 'src/app/core/services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
   orders: Iorder[];
   products: Iproduct[];
-
+  private ordersSubscription!: Subscription;
+  private productsSubscription!: Subscription;
   constructor(
     private orderService: OrderService,
     private productService: ProductService,
@@ -22,13 +24,18 @@ export class OrderComponent implements OnInit {
     this.orders = [];
     this.products = [];
   }
+
   ngOnInit(): void {
-    this.orderService.getOrdersData().subscribe((data: any) => {
-      this.orders = data;
-    });
-    this.productService.getProductsData().subscribe((data: any) => {
-      this.products = data;
-    });
+    this.ordersSubscription = this.orderService
+      .getOrdersData()
+      .subscribe((data: any) => {
+        this.orders = data;
+      });
+    this.productsSubscription = this.productService
+      .getProductsData()
+      .subscribe((data: any) => {
+        this.products = data;
+      });
   }
 
   //this function return product name
@@ -62,6 +69,11 @@ export class OrderComponent implements OnInit {
   // this function Navigate to the OrderDetails page with the orderId as a parameter
   navigateToOrderDetails(orderId: number): void {
     console.log(orderId);
-    this.router.navigate(['/order-details', orderId]);
+    this.router.navigate(['/orders', orderId]);
+  }
+  // unsubscribe from observable
+  ngOnDestroy(): void {
+    // this.ordersSubscription.unsubscribe();
+    // this.productsSubscription.unsubscribe();
   }
 }
